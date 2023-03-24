@@ -7,7 +7,7 @@
 - **(TBD)**
 
 ### Deliverable 1 - Design a dimensional data mart that represents a simple business process of your choosing
-Our team used the Employees Sample Database, along with Sample Sales Data & **(TBD)**, to design a dimensional data mart that reflects business opetations procedures.
+Our team used the Employees Sample Database, along with Sample Sales Data & **(TBD)**, to design a dimensional data mart that reflects business operations procedures.
 
 ### Deliverable 2 - Develop an ETL pipeline that extracts, transforms, and loads data into your data mart
 
