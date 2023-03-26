@@ -7,17 +7,16 @@
 - [Shipping Ports Around the World](https://www.kaggle.com/datasets/sanjeetsinghnaik/ship-ports) from Kaggle using .csv format
 
 ### Deliverable 1 - Design a dimensional data mart that represents a simple business process of your choosing
-Our team used the Employees Sample Database, along with Sample Sales Data & Shipping Ports Around the World, to design a dimensional data mart that reflects business operations procedures. This reflects interaction between retailers & customers.
+Our team used the Employees Sample Database, along with Sample Sales Data & Shipping Ports Around the World, to design a dimensional data mart that reflects business operations procedures. The fact table 'sales', along with dimension tables 'employees' and ports' are present in our design of the data mart. Overall, this reflects interaction between retailers & customers in order for a company to make informed decisions about its commercial shipping process.
 
 ### Deliverable 2 - Develop an ETL pipeline that extracts, transforms, and loads data into your data mart
-Notes on our process for the ETL pipeline:
-- Extracted Employees Sample Database from MySQL
-- Retrieved Sample Sales Data & Shipping Ports Around the World to convert into SQL database table 
+Here's some notes on our process for the ETL pipeline:
+- Extracted Employees Sample Database from MySQL, using only the database table 'employees' 
+- Retrieved Sample Sales Data & Shipping Ports Around the World to convert into the SQL database tables 'sales' and 'ports'
+- Modified column 'order_no' from sales table to link with 'emp_no' from employees table 
+- *Provided error messages to (STILL NEED TO ADD)*
 
 Here is an image of our schema:
-<img width="478" alt="Screen Shot 2023-03-26 at 5 27 00 PM" src="https://user-images.githubusercontent.com/123029506/227805602-a6902ba1-1587-4a3f-baf8-f9364ca94645.png">
 
 
 ### Deliverable 3 - Author one or more SQL queries (SELECT statements) to demonstrate proper functionality
-
-SELECT * 
