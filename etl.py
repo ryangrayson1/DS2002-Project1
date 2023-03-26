@@ -2,16 +2,26 @@ import os
 import kaggle
 import pandas as pd
 import collections
+import pymysql
+import sqlalchemy
 
-# I know this is a security risk but I'm not worried about it and this is easier than setting up a config file on every machine
-# kaggle_json = '{"username":"ryangrayson","key":"ff71ca5843ee7c2766618b7faee5e6f9"}'
+'''
+Setup steps to use this ETL processor:
 
-# try:
-#     with open(os.path.expanduser('~/.kaggle/kaggle.json'), 'w') as f:
-#         f.write(kaggle_json)
-# except:
-#     print('Could not write kaggle.json')
-#     exit(1)
+1. you must have a kaggle.json file in /.kaggle/kaggle.json your home directory
+this is the content needed for the file:
+{"username":"ryangrayson","key":"ff71ca5843ee7c2766618b7faee5e6f9"}
+
+2. you must also have a mysql database connection set up at localhost with the following credentials:
+(or you can change the credentials in the code below)
+host: localhost
+user: ds2002
+password: UVA!1819
+
+3. you must have a database named 'employees' which can be setup at the following link:
+https://github.com/datacharmer/test_db
+
+'''
 
 # try:
 #     kaggle.api.authenticate()
@@ -40,8 +50,20 @@ except:
     print('Could not read port_data.csv')
     exit(1)
 
+# read employees data from db into df
+host, user, password, database = 'localhost', 'ds2002', 'UVA!1819', 'employees'
+try:
+    conn = pymysql.connect(host=host, user=user, password=password, database=database)
+except:
+    print("DB read connection failed")
+    exit(1)
 
-# TODO READ employees data into df with sqlalchemy here
+query = "SELECT emp_no, birth_date, first_name, last_name, gender, hire_date, salary FROM employees NATURAL JOIN salaries ORDER BY salary DESC LIMIT 1000"
+try:
+    employees_df = pd.read_sql(query, conn)
+except:
+    print("Could not read employees data")
+    exit(1)
 
 # for each country, keep the port with the maximum vessels, each country should have one port for this process
 ports_df = ports_df.sort_values(by=['Country', 'Vessels in Port'], ascending=False)
@@ -60,10 +82,48 @@ sales_df = sales_df[sales_df['COUNTRY'].isin(countries)]
 # Then, employee_id = (order_id * 7) % N
 N = 1000
 
-# sales_df['EMPLOYEE_ID'] = employee_ids[(sales_df['ORDERNUMBER'] * 7) % N]
+# get list of unique employee ids
+employee_ids = sorted(list(employees_df['emp_no']))
+
+assert(len(employee_ids) == N, "Error, number of employee ids expected to be " + str(N))
+
+sales_df['EMPLOYEE_ID'] = sales_df['ORDERNUMBER'].apply(lambda x: employee_ids[(x * 7) % N])
 
 
+# trim unneeded columns to prep for sql insertion
+sales_df = sales_df[['ORDERNUMBER', 'QUANTITYORDERED', 'SALES', 'ORDERDATE', 'COUNTRY', 'EMPLOYEE_ID']]
+ports_df = ports_df[['Country', 'Vessels in Port', 'Port Name', 'Area Global']]
+
+# rename to lowercase with underscores format
+sales_df.columns = ['order_no', 'quantity_ordered', 'sale_type', 'order_date', 'country', 'emp_no']
+ports_df.columns = ['country', 'vessels', 'port_name', 'area_global']
 
 
+# write these tables to sql db
 
+def insert_sqlalchemy_dataframe(user_id, pwd, host_name, db_name, df, table_name):
+    conn_str = f"mysql+pymysql://{user_id}:{pwd}@{host_name}/{db_name}"
+    sqlEngine = sqlalchemy.create_engine(conn_str, pool_recycle=3600)
+    connection = sqlEngine.connect()
+    df.to_sql(table_name, con=connection, if_exists='replace') #, index_label='product_id');  'append'
+    connection.close()
+
+
+db = "wahoo_nation_vehicles"
+
+# create new db called wahoo_nation_vehicles
+try:
+    # check if database exists, create if it does not
+    conn = pymysql.connect(host=host, user=user, password=password)
+    cursor = conn.cursor()
+    cursor.execute("CREATE DATABASE IF NOT EXISTS " + db)
+    conn.close()
+
+except:
+    print("Could not create new database")
+    exit(1)
+
+insert_sqlalchemy_dataframe(user, password, host, db, employees_df, 'employees')
+insert_sqlalchemy_dataframe(user, password, host, db, sales_df, 'sales')
+insert_sqlalchemy_dataframe(user, password, host, db, ports_df, 'ports')
 
