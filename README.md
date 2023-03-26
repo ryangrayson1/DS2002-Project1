@@ -16,7 +16,12 @@ Here's some notes on our process for the ETL pipeline:
 - Modified column 'order_no' from sales table to link with 'emp_no' from employees table 
 - *Provided error messages to (STILL NEED TO ADD)*
 
-Here is an image of our schema:
+Here is an image of our schema: 
+
+<img width="478" alt="Screen Shot 2023-03-26 at 5 31 35 PM" src="https://user-images.githubusercontent.com/123029506/227805860-bc5cb17a-9629-41dc-980a-771bc65f7fe7.png">
+
 
 
 ### Deliverable 3 - Author one or more SQL queries (SELECT statements) to demonstrate proper functionality
+
+- See SQL File
