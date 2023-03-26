@@ -18,7 +18,8 @@ Here's some notes on our process for the ETL pipeline:
 
 Here is an image of our schema: 
 
-<img width="478" alt="Screen Shot 2023-03-26 at 5 31 35 PM" src="https://user-images.githubusercontent.com/123029506/227805860-bc5cb17a-9629-41dc-980a-771bc65f7fe7.png">
+
+<img width="417" alt="Screen Shot 2023-03-26 at 6 15 38 PM" src="https://user-images.githubusercontent.com/123029506/227807998-bb5ea286-6711-4212-868f-abd35eb2280e.png">
 
 
 
