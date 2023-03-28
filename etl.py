@@ -88,7 +88,7 @@ N = 1000
 # get list of unique employee ids
 employee_ids = sorted(list(employees_df['emp_no']))
 
-assert(len(employee_ids) == N, "Error, number of employee ids expected to be " + str(N))
+assert len(employee_ids) == N
 
 sales_df['EMPLOYEE_ID'] = sales_df['ORDERNUMBER'].apply(lambda x: employee_ids[(x * 7) % N])
 
