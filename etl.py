@@ -6,7 +6,7 @@ import sqlalchemy
 '''
 Setup steps to use this ETL processor:
 
-1. you must have a kaggle.json file in /.kaggle/kaggle.json your home directory
+1. you must have a kaggle.json file with this path: *home directory*/.kaggle/kaggle.json
 the following line is the exact content needed for the file (file also provided):
 {"username":"ryangrayson","key":"ff71ca5843ee7c2766618b7faee5e6f9"}
 
