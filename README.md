@@ -18,7 +18,7 @@ Here's some notes on our process for the ETL pipeline:
 - Extracted Employees Sample Database from MySQL, using the tables 'employees' and 'salaries', and joined them to optimize future queries
 - Retrieved Sample Sales Data & Shipping Ports Around the World to eventually be converted into the SQL database tables 'sales' and 'ports'
 - Added a column 'emp_no' (details commented in etl.py) to the sales dataframe to link each sale to an employee.
-- Provided try..catch blocks and error messages to ensure functional API calls
+- Provided try..catch blocks and error messages to ensure functional API calls and data loading
 - More specific details commented in etl.py
 
 ### Deliverable 3 - Author one or more SQL queries (SELECT statements) to demonstrate proper functionality
