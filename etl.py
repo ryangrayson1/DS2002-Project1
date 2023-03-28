@@ -19,6 +19,8 @@ password: UVA!1819
 3. you must have a database named 'employees' loaded locally which can be setup at the following link:
 https://github.com/datacharmer/test_db
 
+4. pip install all imported packages, above
+
 '''
 
 try:
