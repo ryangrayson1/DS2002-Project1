@@ -14,7 +14,7 @@ Here's some notes on our process for the ETL pipeline:
 - Extracted Employees Sample Database from MySQL, using only the database table 'employees' 
 - Retrieved Sample Sales Data & Shipping Ports Around the World to convert into the SQL database tables 'sales' and 'ports'
 - Modified column 'order_no' from sales table to link with 'emp_no' from employees table 
-- *Provided error messages to (STILL NEED TO ADD)*
+- Provided error messages to ensure functional API calls
 
 Here is an image of our schema: 
 
