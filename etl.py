@@ -21,6 +21,10 @@ https://github.com/datacharmer/test_db
 
 4. pip install all imported packages, above
 
+5. run this script with python3 etl.py
+
+6. Important: AFTER this file is run, run create_sale_date_dim.sql and integrate_sale_date_dim.sql in your sql workbench to create date dim table.
+
 '''
 
 try:

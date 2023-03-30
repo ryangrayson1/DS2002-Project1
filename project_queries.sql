@@ -20,17 +20,21 @@ GROUP BY e.emp_no, e.first_name, e.last_name
 ORDER BY SUM(s.quantity_ordered) / e.salary DESC
 LIMIT 3;
 
--- query 4: when was the first sale, and which employee made the sale?
-SELECT order_date AS "first_sale_date", e.first_name, e.last_name
-FROM sales s NATURAL JOIN employees e
-ORDER BY order_date ASC
-LIMIT 1;
-
--- query 5: which port had the maximum total sales quantity?
+-- query 4: which port had the maximum total sales quantity?
 SELECT port, SUM(quantity_ordered) AS "total_sales_quantity"
 FROM sales
 ORDER BY SUM(quantity_ordered) DESC
 LIMIT 1;
+
+-- query 5: when was the first sale, and which employee made the sale?
+SELECT MIN(full_date), e.first_name, e.last_name
+FROM sales s NATURAL JOIN sale_date_dim d NATURAL JOIN employees e
+ORDER BY full_date ASC
+LIMIT 1;
+
+-- query 6: what was the maximum total price of an order (price_each * quantity_ordered)?
+SELECT MAX(price_each * quantity_ordered) AS "max_total_price"
+FROM sales;
 
 
 

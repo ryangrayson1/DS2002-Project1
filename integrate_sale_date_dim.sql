@@ -19,6 +19,9 @@ ADD COLUMN order_date_key int NOT NULL AFTER order_date;
 # Step 2: Update New Column(s) with value from Dimension table
 #         WHERE Business Keys in both tables match.
 # ==============================================================
+# drop column first
+ALTER TABLE wahoo_nation_vehicles.sales
+DROP COLUMN IF EXISTS order_date_key;
 UPDATE wahoo_nation_vehicles.sales AS fo
 JOIN wahoo_nation_vehicles.sale_date_dim AS dd
 ON DATE(fo.order_date) = dd.full_date
@@ -35,7 +38,7 @@ LIMIT 10;
 # Step 4: If values are correct then drop old column(s)
 # =============================================================
 ALTER TABLE wahoo_nation_vehicles.sales
-DROP COLUMN order_date,
+DROP COLUMN order_date;
 
 # =============================================================
 # Step 5: Validate Finished Fact Table.
