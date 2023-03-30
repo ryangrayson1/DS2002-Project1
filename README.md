@@ -11,6 +11,8 @@ Our team used the Employees Sample Database, along with Sample Sales Data & Ship
 
 Here is an image of our schema. Notice that the employee table is linked to the sales table via the 'emp_no' column, and the ports table is linked to the sales table via the 'country' column, which is a unique primary key in the ports table.
 
+We also created a date dimension table to have more detailed date information for each sale. This table is linked to the sales table by a date key column, which is a unique primary key in the date dimension table.
+
 <img width="417" alt="Screen Shot 2023-03-26 at 6 15 38 PM" src="https://user-images.githubusercontent.com/123029506/227807998-bb5ea286-6711-4212-868f-abd35eb2280e.png">
 
 ### Deliverable 2 - Develop an ETL pipeline that extracts, transforms, and loads data into your data mart
@@ -21,7 +23,7 @@ Here's some notes on our process for the ETL pipeline:
 - Provided try..catch blocks and error messages to ensure functional API calls and data loading
 - More specific details commented in etl.py
 *Note: before running etl.py, check the comments at the top of the file for setup instructions*
-* After running etl.py, run create_sale_date_dim.sql and integrate_sale_date_dim.sql to create the date dimension table that links to sales.
+*Note: After running etl.py, run create_sale_date_dim.sql and integrate_sale_date_dim.sql to create the date dimension table that links to sales.
 
 ### Deliverable 3 - Author one or more SQL queries (SELECT statements) to demonstrate proper functionality
 - See project_queries.sql
