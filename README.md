@@ -23,6 +23,7 @@ Here's some notes on our process for the ETL pipeline:
 - Provided try..catch blocks and error messages to ensure functional API calls and data loading
 - More specific details commented in etl.py
 *Note: before running etl.py, check the comments at the top of the file for setup instructions*
+
 *Note: After running etl.py, run create_sale_date_dim.sql and integrate_sale_date_dim.sql in your local db engine to create the date dimension table that links to sales.
 
 ### Deliverable 3 - Author one or more SQL queries (SELECT statements) to demonstrate proper functionality
