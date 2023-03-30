@@ -21,9 +21,10 @@ ORDER BY SUM(s.quantity_ordered) / e.salary DESC
 LIMIT 3;
 
 -- query 4: which port had the maximum total sales quantity?
-SELECT port, SUM(quantity_ordered) AS "total_sales_quantity"
-FROM sales
-ORDER BY SUM(quantity_ordered) DESC
+SELECT p.port_name, SUM(s.quantity_ordered) AS "total_sales_quantity"
+FROM sales s NATURAL JOIN ports p
+GROUP BY p.port_name
+ORDER BY SUM(s.quantity_ordered) DESC
 LIMIT 1;
 
 -- query 5: when was the first sale, and which employee made the sale?
