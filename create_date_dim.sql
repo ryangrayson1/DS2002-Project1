@@ -1,7 +1,7 @@
 USE wahoo_nation_vehicles;
 
-DROP TABLE IF EXISTS dim_date;
-CREATE TABLE dim_date(
+DROP TABLE IF EXISTS sale_date_dim;
+CREATE TABLE sale_date_dim(
  date_key int NOT NULL,
  full_date date NULL,
  date_name char(11) NOT NULL,
@@ -74,7 +74,7 @@ BEGIN
 		END IF;
 
 		# add a record into the date dimension table for this date
-		INSERT INTO dim_date
+		INSERT INTO sale_date_dim
 			(date_key
 			, full_date
 			, date_name
@@ -134,5 +134,5 @@ END//
 
 CALL PopulateDateDimension('2003/01/01', '2005/12/31');
 
-SELECT * FROM dim_date
+SELECT * FROM sale_date_dim
 LIMIT 20;
