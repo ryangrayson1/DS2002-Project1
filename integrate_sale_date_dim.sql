@@ -1,5 +1,3 @@
-
-
 # ===================================================================================
 # How to Integrate a Dimension table. In other words, how to look-up Foreign Key
 # values FROM a dimension table and add them to new Fact table columns.
@@ -14,7 +12,7 @@ USE wahoo_nation_vehicles;
 # Step 1: Add New Column(s)
 # ==============================================================
 ALTER TABLE wahoo_nation_vehicles.sales
-ADD COLUMN date_dim_key int NOT NULL AFTER order_date;
+ADD COLUMN order_date_key int NOT NULL AFTER order_date,
 
 # ==============================================================
 # Step 2: Update New Column(s) with value from Dimension table
