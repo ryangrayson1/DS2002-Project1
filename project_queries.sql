@@ -26,6 +26,11 @@ FROM sales s NATURAL JOIN employees e
 ORDER BY order_date ASC
 LIMIT 1;
 
+-- query 5: which port had the maximum total sales quantity?
+SELECT port, SUM(quantity_ordered) AS "total_sales_quantity"
+FROM sales
+ORDER BY SUM(quantity_ordered) DESC
+LIMIT 1;
 
 
 
