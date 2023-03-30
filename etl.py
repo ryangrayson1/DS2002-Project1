@@ -93,13 +93,15 @@ assert len(employee_ids) == N
 sales_df['EMPLOYEE_ID'] = sales_df['ORDERNUMBER'].apply(lambda x: employee_ids[(x * 7) % N])
 
 # trim unneeded columns to prep for sql insertion
-sales_df = sales_df[['ORDERNUMBER', 'QUANTITYORDERED', 'SALES', 'ORDERDATE', 'COUNTRY', 'EMPLOYEE_ID']]
+sales_df = sales_df[['ORDERNUMBER', 'QUANTITYORDERED', 'PRICEEACH', 'ORDERDATE', 'COUNTRY', 'EMPLOYEE_ID']]
 ports_df = ports_df[['Country', 'Vessels in Port', 'Port Name', 'Area Global']]
 
 # rename to lowercase with underscores format
-sales_df.columns = ['order_no', 'quantity_ordered', 'sale_type', 'order_date', 'country', 'emp_no']
+sales_df.columns = ['order_no', 'quantity_ordered', 'price_each', 'order_date', 'country', 'employee_id']
 ports_df.columns = ['country', 'vessels', 'port_name', 'area_global']
 
+# convert order_date to datetime
+sales_df['order_date'] = pd.to_datetime(sales_df['order_date'])
 
 # write these tables to sql db
 def insert_sqlalchemy_dataframe(user_id, pwd, host_name, db_name, df, table_name):

@@ -5,12 +5,9 @@
 # First, go to Edit -> Preferences -> SQL Editor and disable 'Safe Edits'.
 # Close SQL Workbench and Reconnect to the Server Instance.
 # ===================================================================================
+SET SQL_SAFE_UPDATES = 0;
 
 USE wahoo_nation_vehicles;
-
-# first, convert text dates to date type
-ALTER TABLE wahoo_nation_vehicles.sales
-MODIFY COLUMN order_date DATE;
 
 # ==============================================================
 # Step 1: Add New Column(s)
@@ -22,7 +19,6 @@ ADD COLUMN order_date_key int NOT NULL AFTER order_date;
 # Step 2: Update New Column(s) with value from Dimension table
 #         WHERE Business Keys in both tables match.
 # ==============================================================
-SET SQL_SAFE_UPDATES = 0;
 UPDATE wahoo_nation_vehicles.sales AS fo
 JOIN wahoo_nation_vehicles.sale_date_dim AS dd
 ON DATE(fo.order_date) = dd.full_date
