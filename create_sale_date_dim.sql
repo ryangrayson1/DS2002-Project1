@@ -132,4 +132,4 @@ BEGIN
 	END WHILE;
 END//
 
-CALL PopulateDateDimension('2000/01/01', '2010/12/31');
+CALL PopulateDateDimension('2003/01/01', '2005/12/31');
