@@ -9,11 +9,13 @@
 ### Deliverable 1 - Design a dimensional data mart that represents a simple business process of your choosing
 Our team used the Employees Sample Database, along with Sample Sales Data & Shipping Ports Around the World, to design a dimensional data mart that tracks business operations. The fact table 'sales', along with dimension tables 'employees' and 'ports' are present in our design of the data mart. Overall, this reflects interaction between retailers & customers in order for a company to make informed decisions about its commercial sales process.
 
-Here is an image of our schema. Notice that the employee table is linked to the sales table via the 'emp_no' column, and the ports table is linked to the sales table via the 'country' column, which is a unique primary key in the ports table.
+Here is an image of our schema. Notice that the employee table is linked to the sales table via the 'emp_no' column, and the ports table is linked to the sales table via the 'country' column, which is a unique primary key in the ports table. We also use a date table 'date_key' allows any user to access any form of international date time order from Wahoo Nation Vehicles. 
 
 We also created a date dimension table to have more detailed date information for each sale. This table is linked to the sales table by a date key column, which is a unique primary key in the date dimension table.
 
-<img width="417" alt="Screen Shot 2023-03-26 at 6 15 38 PM" src="https://user-images.githubusercontent.com/123029506/227807998-bb5ea286-6711-4212-868f-abd35eb2280e.png">
+
+<img width="497" alt="Screen Shot 2023-03-30 at 8 14 50 PM" src="https://user-images.githubusercontent.com/123029506/228991793-b652649b-ca48-4603-854f-e496537a4aa1.png">
+
 
 ### Deliverable 2 - Develop an ETL pipeline that extracts, transforms, and loads data into your data mart
 Here's some notes on our process for the ETL pipeline:
